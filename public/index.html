@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webinar Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Webinar Management System</h1>
+            <p>Upload, Schedule, and Manage Webinars with Automated Notifications</p>
+        </div>
+
+        <div class="main-content">
+            <!-- Upload Section -->
+            <div class="section">
+                <h2>📁 Upload Excel File</h2>
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📊</div>
+                    <h3>Drop Excel file here or click to browse</h3>
+                    <p>Supported formats: .xlsx, .xls</p>
+                    <p>Expected columns: Webinar ID, Webinar Name, Date, Time, Presenter Name, Presenter Email, Presenter Phone, Attendee Name, Attendee Email, Attendee Phone</p>
+                    <input type="file" id="fileInput" class="file-input" accept=".xlsx,.xls">
+                </div>
+                <div class="progress-bar hidden" id="progressBar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="section hidden" id="statsSection">
+                <h2>📊 Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalWebinars">0</div>
+                        <div class="stat-label">Total Webinars</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="scheduledWebinars">0</div>
+                        <div class="stat-label">Scheduled</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalAttendees">0</div>
+                        <div class="stat-label">Total Attendees</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="upcomingWebinars">0</div>
+                        <div class="stat-label">Upcoming</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="section hidden" id="controlsSection">
+                <h2>🎛️ Controls</h2>
+                <div class="controls">
+                    <button class="btn btn-success" id="scheduleAllBtn">📅 Schedule All Webinars</button>
+                    <button class="btn btn-warning" id="sendEmailsBtn">📧 Send Email Reminders</button>
+                    <button class="btn btn-warning" id="sendWhatsAppBtn">📱 Send WhatsApp Reminders</button>
+                </div>
+            </div>
+
+            <!-- Webinar List -->
+            <div class="section hidden" id="webinarsSection">
+                <h2>🎥 Webinar List</h2>
+                <div class="table-container">
+                    <table id="webinarsTable">
+                        <thead>
+                            <tr>
+                                <th>Webinar ID</th>
+                                <th>Name</th>
+                                <th>Date & Time</th>
+                                <th>Presenter</th>
+                                <th>Attendees</th>
+                                <th>Status</th>
+                                <th>Links</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="webinarsTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for webinar details -->
+    <div class="modal" id="webinarModal">
+        <div class="modal-content">
+            <h3>Webinar Details</h3>
+            <div id="webinarDetails"></div>
+            <button class="btn" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+<script src="script.js"></script>
+<div class="modal" id="attendeeLinksModal">
+    <div class="modal-content">
+      <h3>Attendee Join Links</h3>
+      <ul id="attendeeLinksList"></ul>
+      <button class="btn" onclick="closeAttendeeLinksModal()">Close</button>
+    </div>
+  </div>
+  
+
+</body>
+</html>
