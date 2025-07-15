@@ -38,7 +38,7 @@ function uploadFile(file) {
   const formData = new FormData();
   formData.append("excel", file);
 
-  fetch(`${BASE_URL}/api/v1/upload`, {
+  fetch(`3.109.212.49/api/v1/upload`, {
     method: "POST",
     body: formData,
   })
@@ -80,7 +80,7 @@ function updateStatistics() {
 }
 
 function scheduleWebinar(id) {
-  fetch(`${BASE_URL}/api/v1/schedule/${id}/`, { method: "POST" })
+  fetch(`3.109.212.49/api/v1/schedule/${id}/`, { method: "POST" })
     .then((res) => res.json())
     .then((data) => {
       webinars = data.webinars;
@@ -94,7 +94,7 @@ function scheduleWebinar(id) {
 }
 
 document.getElementById("scheduleAllBtn").addEventListener("click", () => {
-  fetch(`${BASE_URL}/api/v1/schedule`, {
+  fetch(`3.109.212.49/api/v1/schedule`, {
     method: "POST",
   })
     .then((res) => res.json())
@@ -110,14 +110,14 @@ document.getElementById("scheduleAllBtn").addEventListener("click", () => {
 });
 
 document.getElementById("sendEmailsBtn").addEventListener("click", () => {
-  fetch(`${BASE_URL}/api/v1/reminder/email`, { method: "POST" })
+  fetch(`3.109.212.49/api/v1/reminder/email`, { method: "POST" })
     .then((res) => res.json())
     .then((data) => showNotification(`📧 ${data.sent} emails sent`, "success"))
     .catch(() => showNotification("❌ Failed to send emails", "error"));
 });
 
 document.getElementById("sendWhatsAppBtn").addEventListener("click", () => {
-  fetch(`${BASE_URL}/api/v1/reminder/whatsapp`, { method: "POST" })
+  fetch(`3.109.212.49/api/v1/reminder/whatsapp`, { method: "POST" })
     .then((res) => res.json())
     .then((data) =>
       showNotification(`📱 ${data.sent} WhatsApp messages sent`, "success")
@@ -207,7 +207,7 @@ function closeModal() {
 }
 
 function downloadReport(webinarId) {
-    window.open(`${BASE_URL}/api/v1/attendance/${webinarId}`, '_blank');
+    window.open(`3.109.212.49/api/v1/attendance/${webinarId}`, '_blank');
   }
   
 
@@ -220,7 +220,7 @@ function showAttendeeLinks(webinarId) {
     if (!webinar) return;
   
     const list = webinar.attendees.map(a => {
-      const joinUrl = `${BASE_URL}/api/v1/join/${webinarId}/${encodeURIComponent(a.email)}`;
+      const joinUrl = `3.109.212.49/api/v1/join/${webinarId}/${encodeURIComponent(a.email)}`;
       return `<li><strong>${a.name}</strong> – <a href="${joinUrl}" target="_blank">${joinUrl}</a></li>`;
     }).join("");
   
